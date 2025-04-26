@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaf Classifier</title>
+</head>
+<body>
+    <h1>Use Our Technology to get Information about Medicinal Plants</h1>
+    <style>
+        body {
+            background-color: #4BA3A1;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: white;
+            padding: 50px;
+        }
+        h1, h2 {
+            font-size: 32px;
+        }
+        p {
+            font-size: 18px;
+        }
+        .upload-section, .result-section {
+            margin-top: 20px;
+        }
+        .file-input {
+            margin: 10px 0;
+        }
+        .predict-btn {
+            background-color: blue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .predict-btn:hover {
+            background-color: darkblue;
+        }
+        .result-section {
+            text-align: left;
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+        <h2>Prediction: {{ prediction }}</h2>
+        <img src="{{ url_for('static', filename=image_path) }}" alt="{{ prediction }}" width="700">
+    {% endif %}
+</body>
+</html>
